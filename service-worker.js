@@ -8,8 +8,7 @@ const urlsToCache = [
   '/styles.css',
   '/app.js',
   '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  
 ];
 
 // Evento de instalacion: guarda archivos en cache
