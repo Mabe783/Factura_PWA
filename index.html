@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Facturacion PWA</title>
+
+  <!-- como se instala la app -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Color para la barra superior del navegador en dispositivos moviles -->
+  <meta name="theme-color" content="#1976d2">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Mi Facturacion</h1>
+
+  <!-- Boton para crear una factura de prueba -->
+  <button onclick="generarFactura()">Generar Factura</button>
+
+  <!-- Lista donde se mostraran las facturas guardadas -->
+  <ul id="listaFacturas"></ul>
+
+  <!-- Script principal con la logica de la app -->
+  <script src="app.js"></script>
+</body>
+</html>
