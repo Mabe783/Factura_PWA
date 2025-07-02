@@ -3,10 +3,14 @@ body {
   padding: 20px;
 }
 
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
 button {
   padding: 10px 20px;
-  margin-top: 10px;
-  cursor: pointer;
 }
 
 ul {

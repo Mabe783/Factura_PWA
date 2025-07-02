@@ -12,12 +12,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Mi Facturacion</h1>
+  <h1>Factura Simple</h1>
 
-  <!-- Boton para crear una factura de prueba -->
-  <button onclick="generarFactura()">Generar Factura</button>
+  <!-- Formulario para ingresar datos -->
+  <input type="text" id="producto" placeholder="Nombre del producto">
+  <input type="number" id="precio" placeholder="Precio">
+  <button onclick="generarFactura()">Guardar Factura</button>
 
-  <!-- Lista donde se mostraran las facturas guardadas -->
+  <h2>Facturas guardadas</h2>
   <ul id="listaFacturas"></ul>
 
   <!-- Script principal con la logica de la app -->
