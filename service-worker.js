@@ -1,5 +1,5 @@
 // Nombre del cache
-const CACHE_NAME = 'facturacion-cache-v1';
+const CACHE_NAME = 'Facturacion-PWA-V1';
 
 // Archivos que se guardan para usarse sin conexion
 const urlsToCache = [
@@ -8,42 +8,38 @@ const urlsToCache = [
   '/styles.css',
   '/app.js',
   '/manifest.json',
+  '/app.js',
+  '/icono.png',
+  '/icono2.png'
   
 ];
 
 // Evento de instalacion: guarda archivos en cache
-self.addEventListener('install', event => {
+self.addEventListener('install', (event)=> {
+  console.log('Servicio Worker: Instalando...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        console.log('Archivos guardados en cache.');
-        return cache.addAll(urlsToCache);
+       console.log('Servicio Worker: Cacheando archivos...ok');
+        return cache.addAll(archivosParaCachear);
       })
   );
 });
 
-// Evento de activacion: limpia caches viejos
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.map(key => {
-          if (key !== CACHE_NAME) {
-            console.log('Cache viejo eliminado:', key);
-            return caches.delete(key);
-          }
-        })
-      )
-    )
-  );
-});
-
-// Evento de fetch: responde con cache o va a la red
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
-      })
-  );
+// evento fetch que se ejecuta cuando se hace una petición a la PWA
+self.addEventListener('fetch', (event) => {
+    console.log('Servicio Worker: Interceptando petición a:', event.request.url);
+    event.respondWith(
+        caches.match(event.request)
+            .then((respuestaCache) => {
+                // si hay respuesta en el cache, la devuelve
+                if (respuestaCache) {
+                    console.log('Servicio Worker: Devolviendo del cache:', event.request.url);
+                    return respuestaCache;
+                }
+                // si no hay respuesta en el cache, hace la petición a la red
+                console.log('Servicio Worker: Haciendo petición a la red:', event.request.url);
+                return fetch(event.request);
+            })
+    );
 });

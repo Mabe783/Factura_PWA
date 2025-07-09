@@ -22,6 +22,14 @@
   <h2>Facturas guardadas</h2>
   <ul id="listaFacturas"></ul>
 
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('s_w.js')
+        .then(() => console.log("Service Worker registrado con éxito"))
+        .catch(error => console.error("Error al registrar el Service Worker:", error));
+    }
+  </script>
+  
   <!-- Script principal con la logica de la app -->
   <script src="app.js"></script>
 </body>
